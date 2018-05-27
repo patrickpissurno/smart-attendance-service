@@ -1,0 +1,27 @@
+{
+  "name": "smart-attendance-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrickpissurno/smart-attendance-service.git"
+  },
+  "author": "Patrick Pissurno",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/patrickpissurno/smart-attendance-service/issues"
+  },
+  "homepage": "https://github.com/patrickpissurno/smart-attendance-service#readme",
+  "dependencies": {
+    "amqplib": "^0.5.2",
+    "concat-stream": "^1.6.2",
+    "fastify": "^1.5.0",
+    "fastify-multipart": "^0.5.0",
+    "moment": "^2.22.1",
+    "mongodb": "^3.1.0-beta4"
+  }
+}
