@@ -25,15 +25,16 @@
                 return reply.status(500).send({ status: 500 });
 
             let m = moment()
+                .utc()
                 .year(0)
                 .month(0)
                 .date(2)
-                .day(moment().day());
+                .day(moment().day() - 1);
             
             let classes = await db.collection('classes').find({ roomID: roomID }).toArray();
             classes = classes.filter(c => {
                 for(let i = 0; i<c.startTime.length; i++)
-                    if(m.isBetween(moment(c.startTime[i]), moment(c.endTime[i])))
+                    if(m.isBetween(moment(c.startTime[i]).utc(), moment(c.endTime[i]).utc()))
                         return true;
                 return false;
             });
@@ -86,6 +87,7 @@
 
         let groupID = temp[0];
         let classID = temp[1];
+        console.log(temp);
         let peopleIDs = temp.length < 3 ? [] : temp[2].split(',').filter(x => x.trim().length > 0);
 
         console.log('Received attendance of class ' + classID);
@@ -97,15 +99,16 @@
         let attendance = c.attendance.filter(x => moment(x.date).isSame(moment(), 'day'));
         if(attendance.length == 0){
             let m = moment()
+                .utc()
                 .year(0)
                 .month(0)
                 .date(2)
-                .day(moment().day());
+                .day(moment().day() - 1)
 
             let date = null;
             for(let i = 0; i<c.startTime.length; i++)
-                if(m.isBetween(moment(c.startTime[i]), moment(c.endTime[i]))){
-                    date = moment(c.startTime[i]);
+                if(m.isBetween(moment(c.startTime[i]).utc(), moment(c.endTime[i]).utc())){
+                    date = moment(c.startTime[i]).utc();
                     break;
                 }
 
