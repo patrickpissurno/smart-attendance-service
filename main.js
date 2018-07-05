@@ -75,7 +75,7 @@
         }
     });
 
-    await fastify.listen(3000, '0.0.0.0');
+    await fastify.listen(8080, '0.0.0.0');
     console.log(`Listening on ${fastify.server.address().port}`);
 
     ch.consume('attendance', async payload => {
